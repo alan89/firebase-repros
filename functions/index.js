@@ -1,9 +1,36 @@
-const functions = require("firebase-functions");
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp();
+const sgMail = require('@sendgrid/mail');
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// Using @sendgrid/mail
+// TODO: Configure the `sendgrid.key` and `sendgrid.template` Google Cloud environment variables.
+const API_KEY = functions.config().sendgrid.key;
+const TEMPLATE_ID = functions.config().sendgrid.template;
+sgMail.setApiKey(API_KEY);
+
+// Sends an email confirmation when a user changes his mailing list subscription.
+exports.sendVerificationEmail = functions
+  .auth
+  .user()
+  .onCreate((user) => {
+    admin.auth().generateEmailVerificationLink(user.email)
+      .then(async (link) => {
+        // Construct email verification template, embed the link and send
+        // using Sendgrid.
+				const msg = {
+		        to: user.email,
+		        from: 'support@epamfrbs.xyz',
+		        templateId: TEMPLATE_ID,
+		        dynamic_template_data: {
+		            confirmationLink: link,
+		            username: user.displayName,
+		        },
+		    };
+				return sgMail.send(msg);
+      })
+      .catch((error) => {
+        console.error(error);
+        return '200';
+      });
+  });
