@@ -44,7 +44,7 @@ exports.sendVerificationEmail = functions
 			if (user.emailVerified){
 					console.info("Email already verified");
 			}
-			// If there is no email in the created account 
+			// If there is no email in the created account
 			else {
 					console.info("No email in the account");
 			}
@@ -52,3 +52,9 @@ exports.sendVerificationEmail = functions
 		}
 
   });
+
+
+// TODO: Split this file to manage each function in an individual file
+
+// TODO: Create a different function to send the emailLink message using a
+// sendgrid template
