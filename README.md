@@ -19,6 +19,13 @@ This folder will store the different kind of cloud functions used in the project
 
 #### public folder
 Used for Hosting, this folder will store the files to be presented in the webpage. At this moment, a [custom domain](https://epamfrbs.xyz) is configured.
+- **Auth**: At this moment the quickstart for web is being used as the base, but only the following clients are configured:
+	- Anonymous
+	- Email-link
+	- Email-password
+	- Phone
+	- Google (using @alan44's personal account)
+	- Twitter (using @alan44's test app)
 
 #### root folder
 All the files listed here are used for different kinds of configurations:
