@@ -9,7 +9,7 @@ The firebase project used is:
 - Project number: _425447949131_
 
 ### Owners:
-- @alan44 : Alan Escobar Martínez
+- @alan89 : Alan Escobar Martínez
 
 ## Structure
 
@@ -24,8 +24,8 @@ Used for Hosting, this folder will store the files to be presented in the webpag
 	- Email-link
 	- Email-password
 	- Phone
-	- Google (using @alan44's personal account)
-	- Twitter (using @alan44's test app)
+	- Google (using @alan89's personal account)
+	- Twitter (using @alan89's test app)
 
 ### root folder
 All the files listed here are used for different kinds of configurations:
