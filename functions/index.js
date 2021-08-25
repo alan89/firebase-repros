@@ -17,7 +17,9 @@ exports.sendVerificationEmail = functions
   .auth
   .user()
   .onCreate((user) => {
-		if (user.email) {
+		// if the created account has a valid email and it is not considered
+		// as verified, the email for verification is sent.
+		if (user.email && !user.emailVerified) {
 			admin.auth().generateEmailVerificationLink(user.email)
 	      .then(async (link) => {
 	        // Construct email verification template, embed the link and send
@@ -38,7 +40,14 @@ exports.sendVerificationEmail = functions
 	        return error;
 	      });
 		} else {
-			console.info("No email in the account");
+			// If the email is already verified
+			if (user.emailVerified){
+					console.info("Email already verified");
+			}
+			// If there is no email in the created account 
+			else {
+					console.info("No email in the account");
+			}
 			return null;
 		}
 
