@@ -27,6 +27,7 @@ Used for Hosting, this folder will store the files to be presented in the webpag
 	- Google (using @alan89's personal account)
 	- Twitter (using @alan89's test app)
 	- Facebook (using @alan89's test app)
+	- Github (using @alan89's test app)
 
 ### root folder
 All the files listed here are used for different kinds of configurations:
